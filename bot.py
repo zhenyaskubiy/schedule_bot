@@ -38,9 +38,9 @@ def format_lessons_with_pairs(lessons: list) -> str:
 
         lines = []
         if pair_num is not None and time_range:
-            lines.append(f"🔢 Пара {pair_num} — 🕰️ {time_range}")
+            lines.append(f" Пара {pair_num} — 🕰️ {time_range}")
         elif pair_num is not None:
-            lines.append(f"🔢 Пара {pair_num}")
+            lines.append(f" Пара {pair_num}")
         elif time_range:
             lines.append(f"🕰️ {time_range}")
         if title:
