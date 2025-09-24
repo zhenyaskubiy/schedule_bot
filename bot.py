@@ -29,14 +29,19 @@ def format_lessons_with_pairs(lessons: list) -> str:
         if not isinstance(it, dict):
             blocks.append(str(it))
             continue
-        time_range = get_time_by_pair(it.get('pair', -1))
+        pair_num = it.get('pair', None)
+        time_range = get_time_by_pair(pair_num if pair_num is not None else -1)
         title = it.get('title', '')
         teacher = it.get('teacher', '')
         groups = it.get('groups', '')
         room = it.get('room', '')
 
         lines = []
-        if time_range:
+        if pair_num is not None and time_range:
+            lines.append(f"🔢 Пара {pair_num} — 🕰️ {time_range}")
+        elif pair_num is not None:
+            lines.append(f"🔢 Пара {pair_num}")
+        elif time_range:
             lines.append(f"🕰️ {time_range}")
         if title:
             lines.append(f"🖊️ {title}")
@@ -220,7 +225,17 @@ def handle_buttons(message):
         if not lessons:
             lessons = ["Пар немає 🙂"]
         header = build_week_header(today)
-        bot.send_message(chat_id, f"{header}\n📅 Сьогодні:\n" + format_lessons_with_pairs(lessons))
+        en_to_uk = {
+            "monday": "Понеділок",
+            "tuesday": "Вівторок",
+            "wednesday": "Середа",
+            "thursday": "Четвер",
+            "friday": "П’ятниця",
+            "saturday": "Субота",
+            "sunday": "Неділя",
+        }
+        day_uk = en_to_uk.get(day, day.title())
+        bot.send_message(chat_id, f"{header}\n📅 {day_uk}:\n" + format_lessons_with_pairs(lessons))
 
     elif text == "дзвінки":
         bot.send_message(chat_id, "⏰ Розклад дзвінків:\n" + "\n".join(bells))
