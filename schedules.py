@@ -42,6 +42,13 @@ schedule = {
     ],
     "tuesday": [
         {
+            "pair": 4,
+            "title": "Англійська мова",
+            "teacher": "Борисенко Олена Iванівна",
+            "groups": "2П-22",
+            "room": "124",
+        },
+        {
             "pair": 5,
             "title": "Основи поб. роботехніки",
             "teacher": "Орел Андрій Сергійович",
@@ -132,7 +139,15 @@ schedule_upper = {
             "option_idx": 0,
         },
     ],
-    "wednesday": [],
+    "wednesday": [
+        {
+            "pair": 1,
+            "title": "Англійська мова",
+            "teacher": "Борисенко Олена Iванівна",
+            "groups": "2П-22",
+            "room": "124",
+        },
+    ],
     "thursday": [
         {
             "pair": 5,
